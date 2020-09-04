@@ -1,0 +1,31 @@
+//Factory Method
+class Client {
+    public void anOperation() {
+        Product p = factoryMethod();
+        p.doSomething();
+    }
+    protected Product factoryMethod() {//or it can be abstract as well
+        return new DefaultProduct();
+    }
+}
+class NewClient extends Client {
+    protected Product factoryMethod() {//overriding
+        return new SpecificProduct();
+    }
+}
+//Abstract Factory
+class Client {
+    private Factory factory;
+    public Client (Factory factory) {
+        this.factory = factory;
+    }
+    public void anOperation() {
+        ProductA p = factory.createProductA();
+        p.doSomething();//other products and operations as well
+    }
+}
+interface Factory {
+    ProductA createProductA();
+    ProductB createProductB();
+}
+//concrete factories also, implementing Factory interface
